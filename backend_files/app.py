@@ -89,7 +89,7 @@ def predict_batch():
 
         predictions = model.predict(batch_df)
         result = pd.Series(np.round(predictions, 2), name="Predicted_Product_Store_Sales_Total")
-        return result.to_json(orient="index")
+        return superkart_api.response_class(result.to_json(orient="index"), mimetype="application/json")
     except Exception as exc:  # noqa: BLE001
         return jsonify({"error": str(exc)}), 400
 
