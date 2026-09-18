@@ -84,7 +84,7 @@ with tab_online:
                 response = requests.post(f"{backend_url}/v1/predict", json=payload, timeout=15)
             if response.status_code == 200:
                 prediction = response.json()["prediction"]
-                st.success(f"Predicted Product_Store_Sales_Total: **Rs. {prediction:,.2f}**")
+                st.success(f"Predicted Product_Store_Sales_Total: **{prediction:,.2f}** (monetary units - see notebook note on currency)")
             else:
                 st.error(f"API error ({response.status_code}): {response.text}")
         except requests.exceptions.RequestException as exc:
